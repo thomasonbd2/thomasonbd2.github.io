@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brentley Thomason • CS 499 ePortfolio</title>
+  <meta name="description" content="Professional ePortfolio for SNHU CS 499: code review, artifacts, enhancements, and self-assessment." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121936;
+      --text: #e8ecf1;
+      --muted: #b7c0d1;
+      --brand: #5ee1ff;
+      --brand-2: #8fffac;
+      --ring: rgba(94,225,255,.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    :root.light {
+      --bg: #f7f9fc;
+      --panel: #ffffff;
+      --text: #111827;
+      --muted: #4b5563;
+      --brand: #2563eb;
+      --brand-2: #16a34a;
+      --ring: rgba(37,99,235,.2);
+      --shadow: 0 10px 30px rgba(2,8,23,.08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 700px at 10% -10%, rgba(94,225,255,.08), transparent),
+                  radial-gradient(1000px 600px at 110% 10%, rgba(143,255,172,.08), transparent),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { width: min(1200px, 92vw); margin: 0 auto; }
+    .btn { display:inline-flex; align-items:center; gap:.6rem; padding:.8rem 1.1rem; border-radius:999px; font-weight:600; border:1px solid transparent; background: var(--brand); color: white; box-shadow: var(--shadow); }
+    .btn.secondary { background: transparent; color: var(--text); border-color: rgba(255,255,255,.15); }
+    .btn:hover { filter: brightness(1.05); text-decoration: none; }
+    .badge { display:inline-block; padding:.25rem .6rem; border-radius:999px; font-size:.8rem; border:1px solid rgba(255,255,255,.2); color: var(--muted); }
+    header.nav {
+      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px);
+      background: color-mix(in hsl, var(--bg) 70%, transparent);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; padding: .9rem 0; }
+    .brand { display:flex; align-items:center; gap:.75rem; font-weight:800; letter-spacing:.3px; }
+    .brand .dot { width:.75rem; height:.75rem; border-radius:999px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); box-shadow: 0 0 0 6px var(--ring); }
+    nav a { margin: 0 .6rem; color: var(--muted); font-weight:600; }
+    nav a.active, nav a:hover { color: var(--text); }
+    .theme-toggle { cursor:pointer; border:1px solid rgba(255,255,255,.15); border-radius:999px; padding:.45rem .7rem; color: var(--muted); background: transparent; }
+
+    .hero { padding: 5rem 0 3rem; display:grid; grid-template-columns: 1.1fr .9fr; gap: 2rem; align-items: center; }
+    .hero h1 { font-size: clamp(2.2rem, 4vw, 3rem); line-height:1.15; margin:.25rem 0 .5rem; }
+    .kicker { color: var(--brand); font-weight: 700; letter-spacing:.2px; text-transform: uppercase; font-size:.85rem; }
+    .hero p { color: var(--muted); font-size: 1.05rem; }
+    .hero-card { background: linear-gradient(180deg, color-mix(in hsl, var(--panel) 85%, transparent), var(--panel)); border: 1px solid rgba(255,255,255,.08); border-radius: 20px; padding: 1.1rem; box-shadow: var(--shadow); }
+    .grid { display:grid; gap: 1.25rem; }
+
+    section { padding: 3rem 0; }
+    .section-title { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom: 1.25rem; }
+    .section-title h2 { margin: 0; font-size: 1.6rem; }
+    .card { background: var(--panel); border:1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 1.1rem; box-shadow: var(--shadow); }
+    .card h3 { margin-top: .2rem; }
+
+    .filters { display:flex; gap:.6rem; flex-wrap:wrap; }
+    .filters .chip { cursor:pointer; padding:.35rem .8rem; border-radius:999px; border:1px solid rgba(255,255,255,.2); color: var(--muted); background: transparent; font-weight:600; }
+    .filters .chip.active { color: white; border-color: var(--brand); background: color-mix(in hsl, var(--brand) 20%, transparent); }
+    .artifacts { display:grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
+    .artifact { grid-column: span 12; display:grid; grid-template-columns: 1.1fr .9fr; gap: 1rem; align-items:start; }
+    .artifact img { width:100%; height:auto; border-radius: 12px; border:1px solid rgba(255,255,255,.08); display:block; }
+    .artifact .meta { display:flex; gap:.5rem; flex-wrap:wrap; }
+    .artifact .links { display:flex; gap:.6rem; flex-wrap:wrap; }
+    @media (max-width: 920px) {
+      .hero { grid-template-columns: 1fr; }
+      .artifact { grid-template-columns: 1fr; }
+    }
+
+    .timeline { position: relative; padding-left: 1.5rem; }
+    .timeline::before { content:""; position:absolute; left:.55rem; top:.3rem; bottom:.3rem; width:2px; background: linear-gradient(var(--brand), var(--brand-2)); border-radius:2px; }
+    .tl-item { position:relative; margin-bottom:1rem; }
+    .tl-item::before { content:""; position:absolute; left:-.15rem; top:.35rem; width:.9rem; height:.9rem; background: var(--panel); border:2px solid var(--brand); border-radius:999px; }
+
+    footer { padding: 2.5rem 0 4rem; color: var(--muted); }
+    .footer-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items:center; }
+    @media (max-width: 720px) { .footer-grid { grid-template-columns: 1fr; text-align:center; } }
+
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    .muted { color: var(--muted); }
+    .row { display:flex; gap:.75rem; flex-wrap: wrap; }
+    .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:.85rem; padding:.1rem .4rem; border-radius:6px; border:1px solid rgba(255,255,255,.2); color: var(--muted); }
+  </style>
+</head>
+<body>
+  <!-- ===== NAV ===== -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand" aria-label="Site Home">
+        <span class="dot" aria-hidden="true"></span>
+        <a href="#top" style="color:inherit; text-decoration:none;">Brentley Thomason</a>
+      </div>
+      <nav aria-label="Primary">
+        <a href="#self">Self-Assessment</a>
+        <a href="#artifacts">Artifacts</a>
+        <a href="#code-review">Code Review</a>
+        <a href="#narratives">Narratives</a>
+        <a href="#milestones">Milestones</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-pressed="false" aria-label="Toggle theme">🌙</button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <div id="top" class="container hero">
+    <div>
+      <div class="kicker">SNHU CS 499 • ePortfolio</div>
+      <h1>Solutions Architect specializing in advanced OpenGL visualization and high-performance graphics systems.</h1>
+      <p class="muted">
+        This portfolio showcases original and enhanced artifacts across software design & engineering,
+        algorithms & data structures, and databases—centered on a single OpenGL visualization project.
+        Focus areas: full-stack application development, computational graphics, and real-time rendering with OpenGL.
+      </p>
+      <div class="row" style="margin-top:1rem;">
+        <!-- Replace resume link/email later if needed -->
+        <a class="btn" href="./resume.pdf" target="_blank" rel="noopener">View Résumé</a>
+        <a class="btn secondary" href="https://github.com/thomasonbd2/OpenGL-Project" target="_blank" rel="noopener">View Repository</a>
+      </div>
+      <div class="row" style="margin-top:.75rem;">
+        <span class="badge">Software Design & Engineering</span>
+        <span class="badge">Algorithms & Data Structures</span>
+        <span class="badge">Databases</span>
+        <span class="badge">Security</span>
+      </div>
+    </div>
+
+    <aside class="hero-card">
+      <div class="grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="card">
+          <div class="muted">Outcome</div>
+          <h3>Communicate professionally</h3>
+          <p class="muted">Clear, audience-aware writing and visuals. See the self-assessment for concrete examples.</p>
+        </div>
+        <div class="card">
+          <div class="muted">Outcome</div>
+          <h3>Design trade-offs</h3>
+          <p class="muted">Evaluate alternatives and justify choices in enhancements and narratives.</p>
+        </div>
+        <div class="card">
+          <div class="muted">Outcome</div>
+          <h3>Innovative techniques</h3>
+          <p class="muted">Use modern tools and patterns to deliver value aligned to industry goals.</p>
+        </div>
+        <div class="card">
+          <div class="muted">Outcome</div>
+          <h3>Security mindset</h3>
+          <p class="muted">Identify risks, mitigate flaws, and protect data and resources throughout.</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ===== SELF-ASSESSMENT ===== -->
+  <section id="self">
+    <div class="container">
+      <div class="section-title">
+        <h2>Professional Self-Assessment</h2>
+        <span class="badge">Start here</span>
+      </div>
+      <div class="card">
+        <p><strong>About Me:</strong> My name is <strong>Brentley Thomason</strong>, and I am a Solutions Architect specializing in <em>full-stack application development, computational graphics, and real-time rendering with OpenGL</em>. Throughout the Computer Science program at Southern New Hampshire University, I developed a versatile technical skill set and a security-conscious approach to software design. This ePortfolio represents the culmination of that growth, showcasing my ability to design, optimize, and secure complex systems through a single, large-scale OpenGL visualization project.</p>
+        <p><strong>Breadth & Focus:</strong> This capstone refined and extended my OpenGL work across three categories: <em>software design & engineering</em>, <em>algorithms & data structures</em>, and <em>databases</em>. Together, these enhancements transformed a tightly coupled rendering system into a modular, high-performance, and persistent 3D application.</p>
+        <p><strong>Teamwork & Communication:</strong> While this project was primarily individual, it reflects skills developed through collaborative experiences in prior courses and my professional role. I have presented architecture diagrams to developers and translated technical decisions for non-technical stakeholders, ensuring shared understanding of goals and trade-offs.</p>
+        <p><strong>Security Mindset:</strong> In the database layer I used parameterized queries and least-privilege access. In the architecture I reduced global state and validated user-controlled parameters, minimizing the surface for unintended behavior.</p>
+        <p><strong>Success Story:</strong> By modularizing the codebase (Renderer, InputManager, SceneManager), adding quadtree spatial partitioning to cut unnecessary draw calls, and integrating a persistent storage layer, I delivered measurable performance gains and real-world utility—turning a static demo into a reusable, configurable tool.</p>
+        <p><strong>How to Read This Site:</strong> The sections below link to the OpenGL repository and provide narratives for each enhancement. A code review video summarizes the existing functionality, analysis, and planned work mapped to program outcomes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ARTIFACTS ===== -->
+  <section id="artifacts">
+    <div class="container">
+      <div class="section-title">
+        <h2>Artifacts & Enhancements</h2>
+        <div class="filters" aria-label="Filter artifacts by category">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="sde">Software Design</button>
+          <button class="chip" data-filter="algos">Algorithms</button>
+          <button class="chip" data-filter="db">Databases</button>
+        </div>
+      </div>
+
+      <div class="artifacts">
+        <!-- Artifact 1: SDE -->
+        <article class="artifact card" data-tags="sde">
+          <div>
+            <div class="row">
+              <span class="badge">Software Design & Engineering</span>
+              <span class="badge">Refactor</span>
+            </div>
+            <h3>OpenGL Visualization • Renderer & Input Refactor</h3>
+            <p class="muted">Refactored rendering into a dedicated <span class="kbd">Renderer</span>, separated input via <span class="kbd">InputManager</span>, and added a <span class="kbd">SceneManager</span> for clean orchestration and extensibility.</p>
+            <div class="links">
+              <a class="btn secondary" href="https://github.com/thomasonbd2/OpenGL-Project" target="_blank" rel="noopener">Repository</a>
+              <a class="btn" href="https://github.com/thomasonbd2/OpenGL-Project" target="_blank" rel="noopener">Enhanced Build</a>
+              <a class="btn secondary" href="#sde-narrative">Narrative</a>
+            </div>
+          </div>
+          <!-- Use your provided screenshot -->
+          <img src="assets/BaseSS.png" alt="OpenGL scene with UI controls and rendering" />
+        </article>
+
+        <!-- Artifact 2: Algorithms -->
+        <article class="artifact card" data-tags="algos">
+          <div>
+            <div class="row">
+              <span class="badge">Algorithms & Data Structures</span>
+              <span class="badge">Optimization</span>
+            </div>
+            <h3>Scene Optimization • Quadtree Spatial Partitioning</h3>
+            <p class="muted">Implemented a quadtree to accelerate culling and intersection checks, reducing per-frame work and improving FPS on dense scenes.</p>
+            <div class="links">
+              <a class="btn secondary" href="https://github.com/thomasonbd2/OpenGL-Project" target="_blank" rel="noopener">Repository</a>
+              <a class="btn" href="https://github.com/thomasonbd2/OpenGL-Project" target="_blank" rel="noopener">Enhanced Build</a>
+              <a class="btn secondary" href="#algos-narrative">Narrative</a>
+            </div>
+          </div>
+          <img src="assets/WireframeSS.png" alt="Wireframe view used to visualize spatial partitioning" />
+        </article>
+
+        <!-- Artifact 3: Databases -->
+        <article class="artifact card" data-tags="db">
+          <div>
+            <div class="row">
+              <span class="badge">Databases</span>
+              <span class="badge">Integration</span>
+            </div>
+            <h3>Data Layer • Scene Persistence (CRUD + Storage)</h3>
+            <p class="muted">Integrated a database-backed layer for saving/loading scene configurations using secure CRUD operations and migrations for repeatable setups.</p>
+            <div class="links">
+              <a class="btn secondary" href="https://github.com/thomasonbd2/OpenGL-Project" target="_blank" rel="noopener">Repository</a>
+              <a class="btn" href="https://github.com/thomasonbd2/OpenGL-Project" target="_blank" rel="noopener">Enhanced Build</a>
+              <a class="btn secondary" href="#db-narrative">Narrative</a>
+            </div>
+          </div>
+          <img src="assets/ZoomedSS.png" alt="Zoomed scene demonstrating camera and persistence workflow" />
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CODE REVIEW ===== -->
+  <section id="code-review">
+    <div class="container">
+      <div class="section-title">
+        <h2>Informal Code Review</h2>
+        <span class="badge">Video walkthrough</span>
+      </div>
+      <div class="card">
+        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:12px; border:1px solid rgba(255,255,255,.1);">
+          <iframe title="Code Review Video"
+                  src="https://www.youtube.com/embed/dO8BrhI3yAA"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen
+                  style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
+        </div>
+        <div class="muted" style="margin-top:.75rem;">
+          In this video I cover existing functionality, code analysis (structure, security, testing), and the planned enhancements mapped to course outcomes.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NARRATIVES ===== -->
+  <section id="narratives">
+    <div class="container">
+      <div class="section-title">
+        <h2>Artifact Narratives</h2>
+        <span class="badge">Details</span>
+      </div>
+
+      <div id="sde-narrative" class="card" style="margin-bottom:1rem;">
+        <h3>Software Design & Engineering — Renderer/Input/Scene Refactor</h3>
+        <p class="muted"><strong>When:</strong> CS-330 (original), enhanced in CS-499 (Summer 2025).</p>
+        <ul>
+          <li><strong>Why selected:</strong> Demonstrates restructuring a graphics codebase into maintainable modules.</li>
+          <li><strong>Core enhancements:</strong> Extracted <span class="kbd">Renderer</span>, isolated input in <span class="kbd">InputManager</span>, centralized orchestration in <span class="kbd">SceneManager</span>, added UI toggles.</li>
+          <li><strong>What I learned:</strong> Managing dependencies without circular refs, keeping state consistent across subsystems, guarding the GL context post-refactor.</li>
+          <li><strong>Feedback applied:</strong> Reduced global state; improved UI clarity based on peer feedback.</li>
+          <li><strong>Outcomes:</strong> Communication, design trade-offs, innovative techniques, security mindset.</li>
+        </ul>
+      </div>
+
+      <div id="algos-narrative" class="card" style="margin-bottom:1rem;">
+        <h3>Algorithms & Data Structures — Quadtree Spatial Partitioning</h3>
+        <p class="muted"><strong>When:</strong> Enhanced in CS-499 (Summer 2025).</p>
+        <ul>
+          <li><strong>Why selected:</strong> Showcases measurable efficiency gains in rendering workflows.</li>
+          <li><strong>Core enhancements:</strong> Implemented quadtree; bounding-box tests; tunable max depth & bucket size; debug overlay.</li>
+          <li><strong>What I learned:</strong> Balancing depth vs. overhead; visual debugging; tuning thresholds for varied scene densities.</li>
+          <li><strong>Feedback applied:</strong> Classmate recommendations on performance testing; bucket size adjustments for stability.</li>
+          <li><strong>Outcomes:</strong> Design trade-offs, innovative techniques, professional communication.</li>
+        </ul>
+      </div>
+
+      <div id="db-narrative" class="card">
+        <h3>Databases — Scene Persistence (CRUD + Storage)</h3>
+        <p class="muted"><strong>When:</strong> Enhanced in CS-499 (Summer 2025).</p>
+        <ul>
+          <li><strong>Why selected:</strong> Demonstrates integrating persistent storage into a graphics app.</li>
+          <li><strong>Core enhancements:</strong> Added DB layer for save/load; parameterized queries; migrations & seeds for reproducibility.</li>
+          <li><strong>What I learned:</strong> Schema design for static/dynamic entities; keeping I/O off the render loop; connection pooling.</li>
+          <li><strong>Feedback applied:</strong> Security best practices (least privilege, validation); small performance tuning from peer review.</li>
+          <li><strong>Outcomes:</strong> Security mindset, innovative techniques, professional communication.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MILESTONES ===== -->
+  <section id="milestones">
+    <div class="container">
+      <div class="section-title">
+        <h2>Milestones & Deliverables</h2>
+        <span class="badge">Timeline</span>
+      </div>
+      <div class="card timeline">
+        <div class="tl-item">
+          <h3>Milestone 1 — Code Review</h3>
+          <p class="muted">Walkthrough of existing code and enhancement plan. Audience: peers/manager.</p>
+        </div>
+        <div class="tl-item">
+          <h3>Milestone 2 — Enhancement 1: Software Design & Engineering</h3>
+          <p class="muted">Refactor modules, improve architecture, add tests, and document trade-offs.</p>
+        </div>
+        <div class="tl-item">
+          <h3>Milestone 3 — Enhancement 2: Algorithms & Data Structures</h3>
+          <p class="muted">Optimize performance or complexity using appropriate data structures and algorithms.</p>
+        </div>
+        <div class="tl-item">
+          <h3>Milestone 4 — Enhancement 3: Databases</h3>
+          <p class="muted">Add or extend persistent storage with secure access patterns and migrations.</p>
+        </div>
+        <div class="tl-item">
+          <h3>Final — GitHub Pages ePortfolio</h3>
+          <p class="muted">Polished, accessible site with original/enhanced artifacts, narratives, and self-assessment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <span class="badge">Let’s talk</span>
+      </div>
+      <div class="card">
+        <p class="muted">Have questions about my work or want to collaborate? Reach out.</p>
+        <div class="row">
+          <a class="btn" href="mailto:brentley.thomason@snhu.edu">Email Me</a>
+          <a class="btn secondary" href="https://www.linkedin.com/in/brentley-thomason" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn secondary" href="https://github.com/thomasonbd2" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>© <span id="year"></span> Brentley Thomason • SNHU CS 499</div>
+      <div style="text-align:right;">
+        <span class="muted">Built with semantic HTML & CSS • Accessible, responsive, and lightweight.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Persisted theme toggle (dark by default)
+    const root = document.documentElement;
+    const toggleBtn = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') root.classList.add('light');
+    toggleBtn.textContent = root.classList.contains('light') ? '☀️' : '🌙';
+    toggleBtn.setAttribute('aria-pressed', root.classList.contains('light'));
+    toggleBtn.addEventListener('click', () => {
+      root.classList.toggle('light');
+      const isLight = root.classList.contains('light');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      toggleBtn.textContent = isLight ? '☀️' : '🌙';
+      toggleBtn.setAttribute('aria-pressed', isLight);
+    });
+
+    // Year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Active link highlight
+    const links = Array.from(document.querySelectorAll('header nav a'));
+    const sections = links.map(a => document.querySelector(a.getAttribute('href')));
+    const onScroll = () => {
+      const y = window.scrollY + 120;
+      let idx = 0;
+      sections.forEach((sec, i) => { if (sec && sec.offsetTop <= y) idx = i; });
+      links.forEach((a,i)=> a.classList.toggle('active', i === idx));
+    };
+    document.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Artifact filtering
+    const chips = document.querySelectorAll('.filters .chip');
+    const cards = document.querySelectorAll('.artifact');
+    chips.forEach(chip => chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const tag = chip.dataset.filter;
+      cards.forEach(card => {
+        const tags = card.dataset.tags.split(',');
+        const show = tag === 'all' || tags.includes(tag);
+        card.style.display = show ? '' : 'none';
+      });
+    }));
+  </script>
+</body>
+</html>
