@@ -94,6 +94,72 @@
     footer { padding: 2.5rem 0 4rem; color: var(--muted); }
     .footer-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items:center; }
     @media (max-width: 720px) { .footer-grid { grid-template-columns: 1fr; text-align:center; } }
+    /* Thumbnail hover */
+      .artifact .thumb-wrap {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,.08);
+      }
+      .artifact .thumb {
+        display: block;
+        line-height: 0;
+      }
+      .artifact .thumb img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transform: scale(1);
+        transition: transform .25s ease;
+      }
+      .artifact .thumb:hover img,
+      .artifact .thumb:focus img {
+        transform: scale(1.03);
+      }
+      .artifact .thumb .caption {
+        position: absolute;
+        left: 0; right: 0; bottom: 0;
+        padding: .5rem .75rem;
+        font-size: .9rem;
+        color: white;
+        background: linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,0));
+        opacity: 0;
+        transition: opacity .2s ease;
+      }
+      .artifact .thumb:hover .caption,
+      .artifact .thumb:focus .caption {
+        opacity: 1;
+      }
+      
+      /* Lightbox */
+      #lightbox {
+        position: fixed; inset: 0;
+        background: rgba(0,0,0,.8);
+        display: none;
+        align-items: center; justify-content: center;
+        z-index: 1000;
+      }
+      #lightbox.open { display: flex; }
+      #lightbox .content {
+        max-width: min(95vw, 1100px);
+        max-height: 88vh;
+        position: relative;
+      }
+      #lightbox img {
+        width: 100%; height: auto; display: block;
+        border-radius: 12px;
+      }
+      #lightbox .lb-caption {
+        margin-top: .5rem; color: #e8ecf1; text-align: center;
+        font-size: .95rem;
+      }
+      #lightbox .lb-close {
+        position: absolute; top: .5rem; right: .5rem;
+        background: rgba(0,0,0,.55);
+        color: #fff; border: 1px solid rgba(255,255,255,.2);
+        border-radius: 10px; padding: .35rem .6rem; cursor: pointer;
+      }
+      
 
     .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
     .muted { color: var(--muted); }
@@ -132,7 +198,6 @@
         Focus areas: full-stack application development, computational graphics, and real-time rendering with OpenGL.
       </p>
       <div class="row" style="margin-top:1rem;">
-        <!-- Replace resume link/email later if needed -->
         <a class="btn" href="./resume.pdf" target="_blank" rel="noopener">View Résumé</a>
         <a class="btn secondary" href="https://github.com/thomasonbd2/OpenGL-Project" target="_blank" rel="noopener">View Repository</a>
       </div>
@@ -218,7 +283,12 @@
             </div>
           </div>
           <!-- Use your provided screenshot -->
-          <img src="assets/BaseSS.png" alt="OpenGL scene with UI controls and rendering" />
+          <div class="thumb-wrap">
+            <a class="thumb" href="assets/BaseSS.png" data-title="SDE — Renderer/Input/Scene Refactor: base scene view">
+              <img src="assets/BaseSS.png" alt="OpenGL scene with UI controls and rendering" loading="lazy" />
+              <span class="caption">Open image</span>
+            </a>
+          </div>
         </article>
 
         <!-- Artifact 2: Algorithms -->
