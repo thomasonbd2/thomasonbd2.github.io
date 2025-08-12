@@ -79,7 +79,6 @@
     .artifacts { display:grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
     .artifact { grid-column: span 12; display:grid; grid-template-columns: 1.1fr .9fr; gap: 1rem; align-items:start; }
     .artifact img { width:100%; height:auto; border-radius: 12px; border:1px solid rgba(255,255,255,.08); display:block; }
-    .artifact .meta { display:flex; gap:.5rem; flex-wrap:wrap; }
     .artifact .links { display:flex; gap:.6rem; flex-wrap:wrap; }
     @media (max-width: 920px) {
       .hero { grid-template-columns: 1fr; }
@@ -94,71 +93,72 @@
     footer { padding: 2.5rem 0 4rem; color: var(--muted); }
     .footer-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items:center; }
     @media (max-width: 720px) { .footer-grid { grid-template-columns: 1fr; text-align:center; } }
+
     /* Thumbnail hover */
-      .artifact .thumb-wrap {
-        position: relative;
-        overflow: hidden;
-        border-radius: 12px;
-        border: 1px solid rgba(255,255,255,.08);
-      }
-      .artifact .thumb {
-        display: block;
-        line-height: 0;
-      }
-      .artifact .thumb img {
-        width: 100%;
-        height: auto;
-        display: block;
-        transform: scale(1);
-        transition: transform .25s ease;
-      }
-      .artifact .thumb:hover img,
-      .artifact .thumb:focus img {
-        transform: scale(1.03);
-      }
-      .artifact .thumb .caption {
-        position: absolute;
-        left: 0; right: 0; bottom: 0;
-        padding: .5rem .75rem;
-        font-size: .9rem;
-        color: white;
-        background: linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,0));
-        opacity: 0;
-        transition: opacity .2s ease;
-      }
-      .artifact .thumb:hover .caption,
-      .artifact .thumb:focus .caption {
-        opacity: 1;
-      }
-      
-      /* Lightbox */
-      #lightbox {
-        position: fixed; inset: 0;
-        background: rgba(0,0,0,.8);
-        display: none;
-        align-items: center; justify-content: center;
-        z-index: 1000;
-      }
-      #lightbox.open { display: flex; }
-      #lightbox .content {
-        max-width: min(95vw, 1100px);
-        max-height: 88vh;
-        position: relative;
-      }
-      #lightbox img {
-        width: 100%; height: auto; display: block;
-        border-radius: 12px;
-      }
-      #lightbox .lb-caption {
-        margin-top: .5rem; color: #e8ecf1; text-align: center;
-        font-size: .95rem;
-      }
-      #lightbox .lb-close {
-        position: absolute; top: .5rem; right: .5rem;
-        background: rgba(0,0,0,.55);
-        color: #fff; border: 1px solid rgba(255,255,255,.2);
-        border-radius: 10px; padding: .35rem .6rem; cursor: pointer;
-      }
+    .artifact .thumb-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .artifact .thumb {
+      display: block;
+      line-height: 0;
+    }
+    .artifact .thumb img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transform: scale(1);
+      transition: transform .25s ease;
+    }
+    .artifact .thumb:hover img,
+    .artifact .thumb:focus img {
+      transform: scale(1.03);
+    }
+    .artifact .thumb .caption {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      padding: .5rem .75rem;
+      font-size: .9rem;
+      color: white;
+      background: linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,0));
+      opacity: 0;
+      transition: opacity .2s ease;
+    }
+    .artifact .thumb:hover .caption,
+    .artifact .thumb:focus .caption {
+      opacity: 1;
+    }
+
+    /* Lightbox */
+    #lightbox {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.8);
+      display: none;
+      align-items: center; justify-content: center;
+      z-index: 1000;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox .content {
+      max-width: min(95vw, 1100px);
+      max-height: 88vh;
+      position: relative;
+    }
+    #lightbox img {
+      width: 100%; height: auto; display: block;
+      border-radius: 12px;
+    }
+    #lightbox .lb-caption {
+      margin-top: .5rem; color: #e8ecf1; text-align: center;
+      font-size: .95rem;
+    }
+    #lightbox .lb-close {
+      position: absolute; top: .5rem; right: .5rem;
+      background: rgba(0,0,0,.55);
+      color: #fff; border: 1px solid rgba(255,255,255,.2);
+      border-radius: 10px; padding: .35rem .6rem; cursor: pointer;
+    }
 
     .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
     .muted { color: var(--muted); }
@@ -193,7 +193,7 @@
       <h1>Solutions Architect specializing in advanced OpenGL visualization and high-performance graphics systems.</h1>
       <p class="muted">
         This portfolio showcases original and enhanced artifacts across software design & engineering,
-        algorithms & data structures, and databases—centered on a single OpenGL visualization project.
+        algorithms & data structures, and data persistence—centered on a single OpenGL visualization project.
         Focus areas: full-stack application development, computational graphics, and real-time rendering with OpenGL.
       </p>
       <div class="row" style="margin-top:1rem;">
@@ -203,7 +203,7 @@
       <div class="row" style="margin-top:.75rem;">
         <span class="badge">Software Design & Engineering</span>
         <span class="badge">Algorithms & Data Structures</span>
-        <span class="badge">Databases</span>
+        <span class="badge">Data Persistence (JSON)</span>
         <span class="badge">Security</span>
       </div>
     </div>
@@ -242,12 +242,17 @@
         <span class="badge">Start here</span>
       </div>
       <div class="card">
-        <p><strong>About Me:</strong> My name is <strong>Brentley Thomason</strong>, and I am a Solutions Architect specializing in <em>full-stack application development, computational graphics, and real-time rendering with OpenGL</em>. Throughout the Computer Science program at Southern New Hampshire University, I developed a versatile technical skill set and a security-conscious approach to software design. This ePortfolio represents the culmination of that growth, showcasing my ability to design, optimize, and secure complex systems through a single, large-scale OpenGL visualization project.</p>
-        <p><strong>Breadth & Focus:</strong> This capstone refined and extended my OpenGL work across three categories: <em>software design & engineering</em>, <em>algorithms & data structures</em>, and <em>databases</em>. Together, these enhancements transformed a tightly coupled rendering system into a modular, high-performance, and persistent 3D application.</p>
-        <p><strong>Teamwork & Communication:</strong> While this project was primarily individual, it reflects skills developed through collaborative experiences in prior courses and my professional role. I have presented architecture diagrams to developers and translated technical decisions for non-technical stakeholders, ensuring shared understanding of goals and trade-offs.</p>
-        <p><strong>Security Mindset:</strong> In the database layer I used parameterized queries and least-privilege access. In the architecture I reduced global state and validated user-controlled parameters, minimizing the surface for unintended behavior.</p>
-        <p><strong>Success Story:</strong> By modularizing the codebase (Renderer, InputManager, SceneManager), adding quadtree spatial partitioning to cut unnecessary draw calls, and integrating a persistent storage layer, I delivered measurable performance gains and real-world utility—turning a static demo into a reusable, configurable tool.</p>
-        <p><strong>How to Read This Site:</strong> The sections below link to the OpenGL repository and provide narratives for each enhancement. A code review video summarizes the existing functionality, analysis, and planned work mapped to program outcomes.</p>
+        <p><strong>About Me:</strong> My name is <strong>Brentley Thomason</strong>, and I am a Solutions Architect specializing in <em>full-stack application development, computational graphics, and real-time rendering with OpenGL</em>. Throughout the Computer Science program at Southern New Hampshire University, I developed a versatile technical skill set and a security-conscious approach to software design. This ePortfolio represents the culmination of that growth, focused through a single OpenGL visualization project.</p>
+
+        <p><strong>Breadth & Focus:</strong> This capstone refined my project across three categories: <em>software design & engineering</em> (refactor + ImGui interface), <em>algorithms & data structures</em> (quadtree spatial partitioning), and <em>data persistence</em> (JSON-backed scene state for debugging). Together, these enhancements turned a tightly coupled renderer into a modular, performant, and debuggable application.</p>
+
+        <p><strong>Teamwork & Communication:</strong> While this project was primarily individual, I drew on collaborative habits from prior coursework and professional work—translating low-level graphics details into clear rationale for stakeholders and documenting trade-offs for future maintainers.</p>
+
+        <p><strong>Security Mindset:</strong> I validated user-controlled parameters exposed in ImGui, ensured safe file I/O for JSON (guarding paths and using atomic writes), and kept serialization off the render loop to avoid unstable states. I reduced global state to narrow the surface for unintended behavior.</p>
+
+        <p><strong>Success Story:</strong> The ImGui overlay accelerated iteration (live toggles, stats, camera controls). A quadtree reduced per-frame work on dense scenes by culling objects outside relevant regions. JSON persistence made debugging repeatable—capturing and reloading scenes to reproduce issues quickly. Combined, these changes improved developer velocity and runtime performance.</p>
+
+        <p><strong>How to Read This Site:</strong> The sections below link to the OpenGL repository and provide narratives for each enhancement. A code review video summarizes the existing functionality, analysis, and planned work mapped to the course outcomes.</p>
       </div>
     </div>
   </section>
@@ -261,7 +266,7 @@
           <button class="chip active" data-filter="all">All</button>
           <button class="chip" data-filter="sde">Software Design</button>
           <button class="chip" data-filter="algos">Algorithms</button>
-          <button class="chip" data-filter="db">Databases</button>
+          <button class="chip" data-filter="db">Data Persistence</button>
         </div>
       </div>
 
@@ -271,20 +276,22 @@
           <div>
             <div class="row">
               <span class="badge">Software Design & Engineering</span>
-              <span class="badge">Refactor</span>
+              <span class="badge">ImGui + Refactor</span>
             </div>
-            <h3>OpenGL Visualization • Renderer & Input Refactor</h3>
-            <p class="muted">Refactored rendering into a dedicated <span class="kbd">Renderer</span>, separated input via <span class="kbd">InputManager</span>, and added a <span class="kbd">SceneManager</span> for clean orchestration and extensibility.</p>
+            <h3>OpenGL Visualization • ImGui Interface & Refactor</h3>
+            <p class="muted">
+              Introduced an in-engine <span class="kbd">ImGui</span> interface (stats, camera, render toggles) and refactored the codebase into
+              <span class="kbd">Renderer</span>, <span class="kbd">InputManager</span>, and <span class="kbd">SceneManager</span> to improve clarity and extensibility.
+            </p>
             <div class="links">
               <a class="btn secondary" href="https://github.com/thomasonbd2/OpenGL-Project" target="_blank" rel="noopener">Repository</a>
               <a class="btn" href="https://github.com/thomasonbd2/OpenGL-Project" target="_blank" rel="noopener">Enhanced Build</a>
               <a class="btn secondary" href="#sde-narrative">Narrative</a>
             </div>
           </div>
-          <!-- Use your provided screenshot -->
           <div class="thumb-wrap">
-            <a class="thumb" href="assets/BaseSS.png" data-title="SDE — Renderer/Input/Scene Refactor: base scene view">
-              <img src="assets/BaseSS.png" alt="OpenGL scene with UI controls and rendering" loading="lazy" />
+            <a class="thumb" href="assets/BaseSS.png" data-title="SDE — ImGui overlay + refactor: base scene view">
+              <img src="assets/BaseSS.png" alt="OpenGL scene with ImGui overlay and refactored architecture" loading="lazy" />
               <span class="caption">Open image</span>
             </a>
           </div>
@@ -298,7 +305,10 @@
               <span class="badge">Optimization</span>
             </div>
             <h3>Scene Optimization • Quadtree Spatial Partitioning</h3>
-            <p class="muted">Implemented a quadtree to accelerate culling and intersection checks, reducing per-frame work and improving FPS on dense scenes.</p>
+            <p class="muted">
+              Implemented a quadtree for spatial partitioning to accelerate culling and intersection checks; tunable depth and bucket sizes
+              reduce per-frame work on dense scenes.
+            </p>
             <div class="links">
               <a class="btn secondary" href="https://github.com/thomasonbd2/OpenGL-Project" target="_blank" rel="noopener">Repository</a>
               <a class="btn" href="https://github.com/thomasonbd2/OpenGL-Project" target="_blank" rel="noopener">Enhanced Build</a>
@@ -307,21 +317,24 @@
           </div>
           <div class="thumb-wrap">
             <a class="thumb" href="assets/WireframeSS.png" data-title="Algorithms — Quadtree / wireframe debug view">
-              <img src="assets/WireframeSS.png" alt="Wireframe view used to visualize spatial partitioning" loading="lazy" />
+              <img src="assets/WireframeSS.png" alt="Wireframe view used to visualize quadtree spatial partitioning" loading="lazy" />
               <span class="caption">Open image</span>
             </a>
           </div>
         </article>
 
-        <!-- Artifact 3: Databases -->
+        <!-- Artifact 3: Data Persistence (JSON) -->
         <article class="artifact card" data-tags="db">
           <div>
             <div class="row">
-              <span class="badge">Databases</span>
-              <span class="badge">Integration</span>
+              <span class="badge">Data Persistence</span>
+              <span class="badge">Debugging</span>
             </div>
-            <h3>Data Layer • Scene Persistence (CRUD + Storage)</h3>
-            <p class="muted">Integrated a database-backed layer for saving/loading scene configurations using secure CRUD operations and migrations for repeatable setups.</p>
+            <h3>Debugging & Persistence • JSON-Backed Scene State</h3>
+            <p class="muted">
+              Connected an on-disk JSON store to reliably save/load scene configurations for debugging and demos.
+              Added schema versioning, safe file I/O, and kept serialization off the render loop for stability.
+            </p>
             <div class="links">
               <a class="btn secondary" href="https://github.com/thomasonbd2/OpenGL-Project" target="_blank" rel="noopener">Repository</a>
               <a class="btn" href="https://github.com/thomasonbd2/OpenGL-Project" target="_blank" rel="noopener">Enhanced Build</a>
@@ -329,8 +342,8 @@
             </div>
           </div>
           <div class="thumb-wrap">
-            <a class="thumb" href="assets/ZoomedSS.png" data-title="Databases — zoomed scene; persistence workflow">
-              <img src="assets/ZoomedSS.png" alt="Zoomed scene demonstrating camera and persistence workflow" loading="lazy" />
+            <a class="thumb" href="assets/ZoomedSS.png" data-title="JSON persistence — reproducible scene states for debugging">
+              <img src="assets/ZoomedSS.png" alt="Zoomed scene demonstrating camera and JSON-based persistence workflow" loading="lazy" />
               <span class="caption">Open image</span>
             </a>
           </div>
@@ -354,7 +367,8 @@
                   style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
         </div>
         <div class="muted" style="margin-top:.75rem;">
-          In this video I cover existing functionality, code analysis (structure, security, testing), and the planned enhancements mapped to course outcomes.
+          This walkthrough covers the existing functionality and the enhancement plan: adding an in-engine ImGui interface and refactor,
+          implementing quadtree spatial partitioning, and wiring JSON-backed scene persistence for reproducible debugging—mapped to the course outcomes.
         </div>
       </div>
     </div>
@@ -369,14 +383,14 @@
       </div>
 
       <div id="sde-narrative" class="card" style="margin-bottom:1rem;">
-        <h3>Software Design & Engineering — Renderer/Input/Scene Refactor</h3>
+        <h3>Software Design & Engineering — ImGui Interface + Refactor</h3>
         <p class="muted"><strong>When:</strong> CS-330 (original), enhanced in CS-499 (Summer 2025).</p>
         <ul>
-          <li><strong>Why selected:</strong> Demonstrates restructuring a graphics codebase into maintainable modules.</li>
-          <li><strong>Core enhancements:</strong> Extracted <span class="kbd">Renderer</span>, isolated input in <span class="kbd">InputManager</span>, centralized orchestration in <span class="kbd">SceneManager</span>, added UI toggles.</li>
-          <li><strong>What I learned:</strong> Managing dependencies without circular refs, keeping state consistent across subsystems, guarding the GL context post-refactor.</li>
-          <li><strong>Feedback applied:</strong> Reduced global state; improved UI clarity based on peer feedback.</li>
-          <li><strong>Outcomes:</strong> Communication, design trade-offs, innovative techniques, security mindset.</li>
+          <li><strong>Why selected:</strong> Shows architectural improvements and developer-experience gains via live tooling.</li>
+          <li><strong>Core enhancements:</strong> Added <span class="kbd">ImGui</span> overlay (stats, camera controls, render toggles); refactored into <span class="kbd">Renderer</span>, <span class="kbd">InputManager</span>, <span class="kbd">SceneManager</span>; reduced global state.</li>
+          <li><strong>What I learned:</strong> Managing GL state across modules; designing clear ownership of resources; building UI tooling that doesn’t impact frame timing.</li>
+          <li><strong>Feedback applied:</strong> UI clarity and naming improvements from peer review; separated debug widgets from core render path.</li>
+          <li><strong>Outcomes:</strong> Communication, design trade-offs, innovative techniques, security mindset (reduced risk via modularity and validation).</li>
         </ul>
       </div>
 
@@ -384,23 +398,23 @@
         <h3>Algorithms & Data Structures — Quadtree Spatial Partitioning</h3>
         <p class="muted"><strong>When:</strong> Enhanced in CS-499 (Summer 2025).</p>
         <ul>
-          <li><strong>Why selected:</strong> Showcases measurable efficiency gains in rendering workflows.</li>
-          <li><strong>Core enhancements:</strong> Implemented quadtree; bounding-box tests; tunable max depth & bucket size; debug overlay.</li>
-          <li><strong>What I learned:</strong> Balancing depth vs. overhead; visual debugging; tuning thresholds for varied scene densities.</li>
-          <li><strong>Feedback applied:</strong> Classmate recommendations on performance testing; bucket size adjustments for stability.</li>
+          <li><strong>Why selected:</strong> Demonstrates measurable efficiency in the render loop.</li>
+          <li><strong>Core enhancements:</strong> Quadtree with tunable max depth and bucket size; bounding-box tests; optional debug overlay for validation.</li>
+          <li><strong>What I learned:</strong> Balancing tree maintenance cost vs. culling wins; visual diagnostics; thresholds for varying scene densities.</li>
+          <li><strong>Feedback applied:</strong> Performance testing guidance from peers; tuned bucket sizes for consistency.</li>
           <li><strong>Outcomes:</strong> Design trade-offs, innovative techniques, professional communication.</li>
         </ul>
       </div>
 
       <div id="db-narrative" class="card">
-        <h3>Databases — Scene Persistence (CRUD + Storage)</h3>
+        <h3>Data Persistence — JSON-Backed Scene State</h3>
         <p class="muted"><strong>When:</strong> Enhanced in CS-499 (Summer 2025).</p>
         <ul>
-          <li><strong>Why selected:</strong> Demonstrates integrating persistent storage into a graphics app.</li>
-          <li><strong>Core enhancements:</strong> Added DB layer for save/load; parameterized queries; migrations & seeds for reproducibility.</li>
-          <li><strong>What I learned:</strong> Schema design for static/dynamic entities; keeping I/O off the render loop; connection pooling.</li>
-          <li><strong>Feedback applied:</strong> Security best practices (least privilege, validation); small performance tuning from peer review.</li>
-          <li><strong>Outcomes:</strong> Security mindset, innovative techniques, professional communication.</li>
+          <li><strong>Why selected:</strong> Enables reproducible debugging and demos by saving/loading exact scene configurations.</li>
+          <li><strong>Core enhancements:</strong> JSON serialization/deserialization for scene objects and camera; schema version field; safe file I/O with atomic writes; kept I/O off the render loop.</li>
+          <li><strong>What I learned:</strong> Designing a stable schema for evolving features; preventing path traversal; handling partial/invalid files gracefully.</li>
+          <li><strong>Feedback applied:</strong> Added pretty-print for code review readability; basic JSON validation and error messaging.</li>
+          <li><strong>Outcomes:</strong> Security mindset (input validation, safe I/O), innovative techniques, professional communication.</li>
         </ul>
       </div>
     </div>
@@ -420,19 +434,19 @@
         </div>
         <div class="tl-item">
           <h3>Milestone 2 — Enhancement 1: Software Design & Engineering</h3>
-          <p class="muted">Refactor modules, improve architecture, add tests, and document trade-offs.</p>
+          <p class="muted">ImGui interface + refactor; tests and documentation on trade-offs.</p>
         </div>
         <div class="tl-item">
           <h3>Milestone 3 — Enhancement 2: Algorithms & Data Structures</h3>
-          <p class="muted">Optimize performance or complexity using appropriate data structures and algorithms.</p>
+          <p class="muted">Quadtree optimization; debug overlay; benchmarks.</p>
         </div>
         <div class="tl-item">
-          <h3>Milestone 4 — Enhancement 3: Databases</h3>
-          <p class="muted">Add or extend persistent storage with secure access patterns and migrations.</p>
+          <h3>Milestone 4 — Enhancement 3: Data Persistence</h3>
+          <p class="muted">JSON save/load; schema versioning; safe I/O; error handling.</p>
         </div>
         <div class="tl-item">
           <h3>Final — GitHub Pages ePortfolio</h3>
-          <p class="muted">Polished, accessible site with original/enhanced artifacts, narratives, and self-assessment.</p>
+          <p class="muted">Polished, accessible site with artifacts, narratives, and self-assessment.</p>
         </div>
       </div>
     </div>
@@ -464,6 +478,7 @@
       </div>
     </div>
   </footer>
+
   <!-- Lightbox container -->
   <div id="lightbox" aria-hidden="true">
     <div class="content">
@@ -518,40 +533,41 @@
       });
     }));
   </script>
+
+  <!-- Lightbox JS -->
   <script>
     (() => {
       const lb = document.getElementById('lightbox');
       const lbImg = document.getElementById('lb-img');
       const lbCap = document.getElementById('lb-cap');
       const closeBtn = lb.querySelector('.lb-close');
-    
+
       const openLB = (href, title, alt) => {
         lbImg.src = href;
         lbImg.alt = alt || title || 'Image preview';
         lbCap.textContent = title || '';
         lb.classList.add('open');
         lb.setAttribute('aria-hidden', 'false');
-        // lock scroll
         document.documentElement.style.overflow = 'hidden';
         closeBtn.focus();
       };
-    
+
       const closeLB = () => {
         lb.classList.remove('open');
         lb.setAttribute('aria-hidden', 'true');
         lbImg.src = '';
         document.documentElement.style.overflow = '';
       };
-    
+
       document.addEventListener('click', (e) => {
         const a = e.target.closest('a.thumb');
         if (a) {
           e.preventDefault();
           openLB(a.getAttribute('href'), a.dataset.title, a.querySelector('img')?.alt);
         }
-        if (e.target === lb) closeLB(); // click outside
+        if (e.target === lb) closeLB();
       });
-    
+
       closeBtn.addEventListener('click', closeLB);
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && lb.classList.contains('open')) closeLB();
