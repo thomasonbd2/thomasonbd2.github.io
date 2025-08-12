@@ -160,47 +160,6 @@
         border-radius: 10px; padding: .35rem .6rem; cursor: pointer;
       }
 
-    (() => {
-      const lb = document.getElementById('lightbox');
-      const lbImg = document.getElementById('lb-img');
-      const lbCap = document.getElementById('lb-cap');
-      const closeBtn = lb.querySelector('.lb-close');
-    
-      const openLB = (href, title, alt) => {
-        lbImg.src = href;
-        lbImg.alt = alt || title || 'Image preview';
-        lbCap.textContent = title || '';
-        lb.classList.add('open');
-        lb.setAttribute('aria-hidden', 'false');
-        // lock scroll
-        document.documentElement.style.overflow = 'hidden';
-        closeBtn.focus();
-      };
-    
-      const closeLB = () => {
-        lb.classList.remove('open');
-        lb.setAttribute('aria-hidden', 'true');
-        lbImg.src = '';
-        document.documentElement.style.overflow = '';
-      };
-    
-      document.addEventListener('click', (e) => {
-        const a = e.target.closest('a.thumb');
-        if (a) {
-          e.preventDefault();
-          openLB(a.getAttribute('href'), a.dataset.title, a.querySelector('img')?.alt);
-        }
-        if (e.target === lb) closeLB(); // click outside
-      });
-    
-      closeBtn.addEventListener('click', closeLB);
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lb.classList.contains('open')) closeLB();
-      });
-    })();
-
-      
-
     .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
     .muted { color: var(--muted); }
     .row { display:flex; gap:.75rem; flex-wrap: wrap; }
@@ -550,6 +509,44 @@
         card.style.display = show ? '' : 'none';
       });
     }));
+    (() => {
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lb-img');
+      const lbCap = document.getElementById('lb-cap');
+      const closeBtn = lb.querySelector('.lb-close');
+    
+      const openLB = (href, title, alt) => {
+        lbImg.src = href;
+        lbImg.alt = alt || title || 'Image preview';
+        lbCap.textContent = title || '';
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden', 'false');
+        // lock scroll
+        document.documentElement.style.overflow = 'hidden';
+        closeBtn.focus();
+      };
+    
+      const closeLB = () => {
+        lb.classList.remove('open');
+        lb.setAttribute('aria-hidden', 'true');
+        lbImg.src = '';
+        document.documentElement.style.overflow = '';
+      };
+    
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('a.thumb');
+        if (a) {
+          e.preventDefault();
+          openLB(a.getAttribute('href'), a.dataset.title, a.querySelector('img')?.alt);
+        }
+        if (e.target === lb) closeLB(); // click outside
+      });
+    
+      closeBtn.addEventListener('click', closeLB);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lb.classList.contains('open')) closeLB();
+      });
+    })();
   </script>
 </body>
 </html>
